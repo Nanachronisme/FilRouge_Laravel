@@ -19,7 +19,7 @@ return new class extends Migration
             $table->char('teaGender', 1);
             $table->string('teaName', 50);
             $table->string('teaNickName', 50);
-            $table->text('teaOrigin');
+            $table->text('teaOrigin')->nullable();
             $table->foreignId('sections_id')->constrained();
             $table->timestamps();
         });

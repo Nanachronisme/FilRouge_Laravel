@@ -3,7 +3,9 @@
 @section('content')
 
         <h2>ajout d'un enseignant</h2>
-        <form method="post" action="submit.php">
+
+        <form  action={{ route('teachers.store') }} method="POST">
+            @csrf
             <p>
                 <input type="radio" name="gender" value="w">Femme
                 <input type="radio" name="gender" value="m">Homme
@@ -19,7 +21,7 @@
             </p>
             <p>
                 <label for="surname">Surnom :</label>
-                <input type="text" name="surname" />
+                <input type="text" name="nickName" />
             </p>
             <p>
                 <label for="origin">Origine :</label>
@@ -28,9 +30,9 @@
             <p>
                 <select name="section">
                     <option value="">Section</option>
-                    <option value="0">Informatique</option>
-                    <option value="1">Bois</option>
-                    <option value="5">Electronique</option>
+                    <option value="1">Informatique</option>
+                    <option value="2">Bois</option>
+                    <option value="3">Electronique</option>
                 </select>
             </p>
             <p>

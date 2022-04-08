@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PagesController;
+use App\Http\Controllers\TeacherController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,18 +14,18 @@ use App\Http\Controllers\PagesController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [TeacherController::class, 'index'])->name('index');
+
+Route::resource('/teachers', TeacherController::class);
 
 //Laravel 8 way 
-Route::get('/home', [PagesController::class, 'index'])->name('index');
+// Route::get('/home', [TeacherController::class, '@index'])->name('index');
 
-Route::get('/addTeacher', [PagesController::class, 'addTeacher']);
+// Route::get('/addTeacher', [TeacherController::class, 'create']);
 
-Route::get('/detailTeacher', [PagesController::class, 'detailTeacher']);
+// Route::get('/detailTeacher', [TeacherController::class, 'TeacherController@show']);
 
-Route::get('/updateTeacher', [PagesController::class, 'updateTeacher']);
+// Route::get('/updateTeacher', [TeacherController::class, 'updateTeacher']);
 
 
 //Laravel 8 alternative way
