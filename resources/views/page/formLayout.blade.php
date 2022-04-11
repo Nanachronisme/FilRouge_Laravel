@@ -2,6 +2,7 @@
 
 @section('content')
 
+{{-- TODO make it all dynamic and add conditions depending on update or create page --}}
         <h2>ajout d'un enseignant</h2>
 
         <form  action={{ route('teachers.store') }} method="POST">

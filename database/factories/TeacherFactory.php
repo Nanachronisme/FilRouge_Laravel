@@ -24,7 +24,7 @@ class TeacherFactory extends Factory
             'teaGender' => $this->faker->regexify('[MFO]{1}'),
             'teaNickName' => $this->faker->userName(),
             'teaOrigin' => $this->faker->paragraph(),
-            'sections_id' => $this->faker->numberBetween(1, 3),
+            'section_id' => $this->faker->numberBetween(1, 3),
             'created_at'=> now()
         ];
     }

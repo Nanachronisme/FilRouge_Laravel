@@ -30,15 +30,20 @@
             </tr>
         </thead>
         @foreach ($teachers as $teacher )
-        <tbody>
-            <tr>
-                <th>{{ $teacher->teaFirstName . $teacher->teaName }}</th>
-                <th>{{ $teacher->teaNickName }}</th>
-                <td><p><a href={{ route('teachers.show', $teacher->id) }}> View</a></p></td>
-                <td><p><a href={{ route('teachers.edit', $teacher->id) }}> Edit</a></p></td>
-            </tr>
-        </tbody>
-
+            <tbody>
+                <tr>
+                    <th>{{ $teacher->teaFirstName . $teacher->teaName }}</th>
+                    <th>{{ $teacher->teaNickName }}</th>
+                    <td><p><a href={{ route('teachers.show', $teacher->id) }}>View</a></p></td>
+                    <td><p><a href={{ route('teachers.edit', $teacher->id) }}>Edit</a></p></td>
+                    <form action={{ route('teachers.destroy', $teacher->id)}} method="POST">
+                        {{-- we need csrf since we're making a POST request  --}}
+                        @csrf
+                        @method('DELETE')
+                        <td><p><button type="submit">Supprimer</button></p></td>
+                    </form>
+                </tr>
+            </tbody>
 
         @endforeach
     </table>

@@ -8,8 +8,17 @@
     <p>Surnom : {{ $teacher->teaNickName }}</p>
     <p>Origine : {{ $teacher->teaOrigin }}</p>
 
-    <p>[ {{ //TODO Refer to the section name
-    $teacher->sections_id }} +    <a href="modify.php">modifier</a> <a href="delete.php">supprimer</a> ]</p>
+    <p>
+        {{-- TODO Refertothesectionname --}}
+        {{ $teacher-> }}
 
+       <a href={{ route('teachers.edit', $teacher->id)}}>modifier</a> 
+
+       <form  method='POST' action={{ route('teachers.destroy', $teacher->id)}}>
+            @csrf
+            @method('DELETE')
+            <input type= "submit" value="supprimer">
+        </form>
+    </p>
     <a href="{{ route('index') }}">retour a la page d'accueil</a>
 @endsection

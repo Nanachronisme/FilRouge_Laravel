@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('teaName', 50);
             $table->string('teaNickName', 50);
             $table->text('teaOrigin')->nullable();
-            $table->foreignId('sections_id')->constrained();
+            $table->foreignId('section_id')->constrained();
             $table->timestamps();
         });
     }

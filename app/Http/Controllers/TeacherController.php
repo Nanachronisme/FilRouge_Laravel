@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Teacher;
+use App\Models\Section;
+
 
 class TeacherController extends Controller
 {
@@ -29,7 +31,8 @@ class TeacherController extends Controller
      */
     public function create()
     {
-        return view('page.addTeacher');
+        $sections = Section::all();
+        return view('page.addTeacher')->with('sections', $sections);
     }
 
     /**
@@ -49,14 +52,13 @@ class TeacherController extends Controller
             'teaNickName' => $request->input('nickName'),
             'teaGender' => $request->input('gender'),
             'teaOrigin' => $request->input('origin'),
-            'sections_id' => $request->input('section')
+            'section_id' => $request->input('section')
         ]);
         
         //dd($teacher);
         
         return redirect('/teachers');
 
-      
     }
 
     /**
@@ -67,9 +69,11 @@ class TeacherController extends Controller
      */
     public function show($id)
     {
-        //
-        dd($id);
-        return view('page.detailTeacher', [$id]);
+        $teacher = Teacher::findOrFail($id);
+
+        //dd($teacher->section->secName);
+
+        return view('page.detailTeacher', [$id])->with('teacher', $teacher);
 
     }
 
@@ -81,9 +85,12 @@ class TeacherController extends Controller
      */
     public function edit($id)
     {
-        //
-        dd($id);
-        return view('page.editTeacher');
+        $data = [
+            'teacher' => Teacher::findOrFail($id),
+            'sections' => Section::all()
+        ];
+
+        return view('page.editTeacher')->with('data', $data);
     }
 
     /**
@@ -95,7 +102,17 @@ class TeacherController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $teacher = Teacher::where('id', $id)->update([
+            'teaFirstName' => $request->input('firstName'),
+            'teaName' => $request->input('lastName'),
+            'teaNickName' => $request->input('nickName'),
+            'teaGender' => $request->input('gender'),
+            'teaOrigin' => $request->input('origin'),
+            'section_id' => $request->input('section')
+        ]);
+
+        return redirect('/teachers');
+
 
     }
 
@@ -105,8 +122,11 @@ class TeacherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Teacher $teacher )
     {
-        //
+        $teacher->delete();
+
+        return redirect('/teachers');
+
     }
 }
