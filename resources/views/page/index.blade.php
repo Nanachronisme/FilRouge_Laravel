@@ -1,6 +1,8 @@
 
 @extends('layouts.app')
 
+@section('title', 'Liste Enseignants')
+
 @section('content')
     
     <!--
@@ -32,7 +34,7 @@
         @foreach ($teachers as $teacher )
             <tbody>
                 <tr>
-                    <th>{{ $teacher->teaFirstName . $teacher->teaName }}</th>
+                    <th>{{ $teacher->teaFirstName . ' ' . $teacher->teaName }}</th>
                     <th>{{ $teacher->teaNickName }}</th>
                     <td><p><a href={{ route('teachers.show', $teacher->id) }}>View</a></p></td>
                     <td><p><a href={{ route('teachers.edit', $teacher->id) }}>Edit</a></p></td>
@@ -47,5 +49,5 @@
 
         @endforeach
     </table>
-S
+
 @endsection

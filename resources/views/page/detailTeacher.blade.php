@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Détails Enseignant')
+
 @section('content')
     <h1>Surnom des enseignants</h1>
     <p>Zone pour le menu</p>
@@ -9,16 +11,19 @@
     <p>Origine : {{ $teacher->teaOrigin }}</p>
 
     <p>
-        {{-- TODO Refertothesectionname --}}
-        {{ $teacher-> }}
+        {{-- TODO Referto the sectionname --}}
+        <p>Section : {{ $teacher->section->secName }} </p>
 
-       <a href={{ route('teachers.edit', $teacher->id)}}>modifier</a> 
+        <p>
+            <a href={{ route('teachers.edit', $teacher->id) }}>modifier</a>
 
-       <form  method='POST' action={{ route('teachers.destroy', $teacher->id)}}>
-            @csrf
-            @method('DELETE')
-            <input type= "submit" value="supprimer">
-        </form>
+            <form method='POST' action={{ route('teachers.destroy', $teacher->id) }}>
+                @csrf
+                @method('DELETE')
+                <input type="submit" value="supprimer">
+            </form>
+        </p>
+
     </p>
     <a href="{{ route('index') }}">retour a la page d'accueil</a>
 @endsection

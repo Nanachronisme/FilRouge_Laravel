@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Teacher;
 use App\Models\Section;
-
+use App\Http\Requests\CreateTeacherRequest;
 
 class TeacherController extends Controller
 {
@@ -41,9 +41,10 @@ class TeacherController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateTeacherRequest $request)
     {
-        //dd($request);
+        // Retrieve the validated input data...
+        $request->validated();
 
         //the create method will automatically save the result
         $teacher = Teacher::create([
@@ -90,7 +91,7 @@ class TeacherController extends Controller
             'sections' => Section::all()
         ];
 
-        return view('page.editTeacher')->with('data', $data);
+        return view('page.editTeacher')->with($data);
     }
 
     /**
@@ -100,11 +101,13 @@ class TeacherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CreateTeacherRequest $request, $id)
     {
+        $request->validated();
+
         $teacher = Teacher::where('id', $id)->update([
             'teaFirstName' => $request->input('firstName'),
-            'teaName' => $request->input('lastName'),
+            'teaName' => $request->input('name'),
             'teaNickName' => $request->input('nickName'),
             'teaGender' => $request->input('gender'),
             'teaOrigin' => $request->input('origin'),
@@ -112,7 +115,6 @@ class TeacherController extends Controller
         ]);
 
         return redirect('/teachers');
-
 
     }
 
