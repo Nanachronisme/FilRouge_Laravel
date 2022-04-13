@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TeacherController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,21 +13,12 @@ use App\Http\Controllers\TeacherController;
 |
 */
 
-Route::get('/', [TeacherController::class, 'index'])->name('index');
+Route::get('/', function () {
+    return view('welcome');
+});
 
-Route::resource('/teachers', TeacherController::class);
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
-//Laravel 8 way 
-// Route::get('/home', [TeacherController::class, '@index'])->name('index');
-
-// Route::get('/addTeacher', [TeacherController::class, 'create']);
-
-// Route::get('/detailTeacher', [TeacherController::class, 'TeacherController@show']);
-
-// Route::get('/updateTeacher', [TeacherController::class, 'updateTeacher']);
-
-
-//Laravel 8 alternative way
-//Route::get('/home', 'App\Http\Controllers\HomeController@index');
-
-
+require __DIR__.'/auth.php';
