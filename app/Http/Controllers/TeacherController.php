@@ -16,9 +16,6 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        //
-        //dd(Teacher::all());
-
         return view('page.index', [
             'teachers' => Teacher::all()
         ]);
