@@ -18,10 +18,9 @@ class SectionSeeder extends Seeder
      */
     public function run()
     {
-
-        Section::create(['secName' => 'Informatique']);
-        Section::create(['secName' => 'Bois']);
-        Section::create(['secName' => 'Electronique']);
-        
+        //will run it only if 
+        Section::firstOrCreate(['secName' => 'Informatique']);
+        Section::firstOrCreate(['secName' => 'Bois']);
+        Section::firstOrCreate(['secName' => 'Electronique']);
     }
 }

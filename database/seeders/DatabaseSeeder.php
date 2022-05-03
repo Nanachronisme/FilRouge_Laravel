@@ -2,8 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Teacher;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\App;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,9 +18,10 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         //$this->call(SectionTableSeeder::class);
+        //will only run if data doesn't already exists
         $this->call(SectionSeeder::class);
 
-        //use it for the first migration
-        \App\Models\User::factory(10)->create();
+        Teacher::factory(10)->create();
+
     }
 }
