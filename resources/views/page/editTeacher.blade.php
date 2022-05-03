@@ -1,13 +1,14 @@
-@extends('layouts.app')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Dashboard') }}
+        </h2>
+    </x-slot>
 
-@section('title', 'Modifier Enseignant')
-
-@section('content')
-
-    <h2>modification d'un enseignant</h2>
+    <h2>Modification d'un enseignant</h2>
 
     <x-teacher-form method="PUT" route="{{ route('teachers.update', $teacher->id) }}" :teacher="$teacher" :sections="$sections" />
 
-    <a href="{{ route('index') }}">retour a la page d'accueil</a>
+    <a href="{{ route('teachers.index') }}">retour a la page d'accueil</a>
 
-@endsection
+</x-app-layout>

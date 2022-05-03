@@ -1,13 +1,14 @@
-@extends('layouts.app')
-
-@section('title', 'Ajouter Enseignant')
-
-@section('content')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Dashboard') }}
+        </h2>
+    </x-slot>
 
     <h2>ajout d'un enseignant</h2>
 
     <x-teacher-form route="{{route('teachers.store')}}" :sections="$sections" />
     
-    <a href="{{ route('index') }}">retour a la page d'accueil</a>
+    <a href="{{ route('teachers.index') }}">retour a la page d'accueil</a>
         
-@endsection
+</x-app-layout>

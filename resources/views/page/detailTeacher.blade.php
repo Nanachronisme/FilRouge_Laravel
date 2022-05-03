@@ -1,8 +1,10 @@
-@extends('layouts.app')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Dashboard') }}
+        </h2>
+    </x-slot>
 
-@section('title', 'Détails Enseignant')
-
-@section('content')
     <h1>Surnom des enseignants</h1>
     <p>Zone pour le menu</p>
 
@@ -25,5 +27,5 @@
         </p>
 
     </p>
-    <a href="{{ route('index') }}">retour a la page d'accueil</a>
-@endsection
+    <a href="{{ route('teachers.index') }}">retour a la page d'accueil</a>
+</x-app-layout>

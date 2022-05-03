@@ -14,6 +14,9 @@
 
 
         <h2>Liste des enseignants</h2>
+
+        <a href={{ route('teachers.create') }}>Ajouter un Enseignant</a>
+
         <table>
             <thead>
                 <tr>
