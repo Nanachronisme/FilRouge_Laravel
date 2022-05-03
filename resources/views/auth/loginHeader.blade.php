@@ -5,13 +5,13 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
 
-                    <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                    <div class="hidden px-6 py-4 sm:block">
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
                             <p>
-                                <x-label for="username" :value="__('Username')" />
-                                <x-input id="username" class="block mt-1 w-full" type="text" name="username"
-                                    :value="old('username')" required autofocus />
+                                <x-label for="name" :value="__('name')" />
+                                <x-input id="name" class="block mt-1 w-full" type="text" name="name"
+                                    :value="old('name')" required autofocus />
                             </p>
 
                             <p>

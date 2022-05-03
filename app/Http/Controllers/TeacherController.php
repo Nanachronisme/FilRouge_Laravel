@@ -17,7 +17,7 @@ class TeacherController extends Controller
     public function index()
     {
         return view('page.index', [
-            'teachers' => Teacher::all()
+            'teachers' => Teacher::latest()->filter(request(['search']))->get() //search will be passed to queryScope in Teacher Model
         ]);
     }
 

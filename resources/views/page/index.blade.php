@@ -9,7 +9,6 @@
         <!--Authentication logic -->
         @include('auth.loginHeader')
 
-
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 

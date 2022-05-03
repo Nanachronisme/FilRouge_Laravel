@@ -15,10 +15,19 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <!-- Search -->
+                    <form class="sm:flex items-center" action="#" method="get">
+                        <input  type="search" name="search" id="search" placeholder="Search teachers"
+                            value="{{ request('search') }}"
+                            class ="bg-transparent placeholder-black font-semibold text-sm">
+                    </form>
                 </div>
             </div>
 
+
+
             <!-- Settings Dropdown -->
+            @if (Auth::check())
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
@@ -36,10 +45,9 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <!-- Authentication -->
+                    <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
@@ -49,6 +57,7 @@
                     </x-slot>
                 </x-dropdown>
             </div>
+            @endif
 
             <!-- Hamburger -->
             <div class="-mr-2 flex items-center sm:hidden">
