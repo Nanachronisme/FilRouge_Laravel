@@ -4,27 +4,33 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
-    <div class="py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
 
-        {{--         
-            <!--Authentication logic -->
+        {{-- <!--Authentication logic -->
             @include('auth.loginHeader')
 
             <!-- Validation Errors -->
-            <x-auth-validation-errors class="mb-4" :errors="$errors" />
-         --}}
+            <x-auth-validation-errors class="mb-4" :errors="$errors" /> --}}
 
 
-        <h2>Liste des enseignants</h2>
+        <h2 class="font-semibold text-xl mb-4">Liste des enseignants</h2>
 
-        <x-button-link>
-            TEST
+        <x-button-link href="{{ route('teachers.create') }}" class="mb-4">
+            Ajouter un Enseignant
         </x-button-link>
 
-        <button type="button" onclick="location.href='{{ route('teachers.create') }}'" value="va a la page ajouter un enseignant" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
-            <svg class="w-5 h-5 mr-2 -ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path></svg>
-            <a href={{ route('teachers.create') }}>Ajouter un Enseignant</a>          
-        </button>
+        
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
+            @foreach ( $teachers as $teacher )
+                <x-teacher-card name="{{  $teacher->teaFirstName . ' ' . $teacher->teaName }}" 
+                                nickName="{{ $teacher->teaNickName }}" 
+                                id="{{ $teacher->id }}"
+                                class="block"></x-teacher-card>
+            @endforeach
+        </div>
+        
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-4 lg:grid-cols-6">
+        </div>
 
         <table>
             <thead>
@@ -34,7 +40,7 @@
                     <th>Options</th>
                 </tr>
             </thead>
-            @foreach($teachers as $teacher)
+            @foreach ($teachers as $teacher)
                 <tbody>
                     <tr>
                         <th>{{ $teacher->teaFirstName . ' ' . $teacher->teaName }}
@@ -52,8 +58,7 @@
                                 <a href={{ route('teachers.edit', $teacher->id) }}>Edit</a>
                             </p>
                         </td>
-                        <form action={{ route('teachers.destroy', $teacher->id) }}
-                            method="POST">
+                        <form action={{ route('teachers.destroy', $teacher->id) }} method="POST">
                             {{-- we need csrf since we're making a POST request --}}
                             @csrf
                             @method('DELETE')
