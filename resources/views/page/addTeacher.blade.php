@@ -7,7 +7,7 @@
 
     <h2>ajout d'un enseignant</h2>
 
-    <x-teacher-form route="{{route('teachers.store')}}" :sections="$sections" />
+    <x-forms.add-teacher route="{{route('teachers.store')}}" :sections="$sections" />
     
     <a href="{{ route('teachers.index') }}">retour a la page d'accueil</a>
         
