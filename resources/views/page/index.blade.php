@@ -19,18 +19,21 @@
             Ajouter un Enseignant
         </x-button-link>
 
-        
+        <div class="mb-12">
+            <x-carousel></x-carousel>
+        </div>
+
         <div class="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
             @foreach ( $teachers as $teacher )
                 <x-teacher-card name="{{  $teacher->teaFirstName . ' ' . $teacher->teaName }}" 
                                 nickName="{{ $teacher->teaNickName }}" 
                                 id="{{ $teacher->id }}"
-                                class="block"></x-teacher-card>
+                                class="block">
+                </x-teacher-card>
             @endforeach
         </div>
-        
-        <div class="grid grid-cols-1 gap-4 md:grid-cols-4 lg:grid-cols-6">
-        </div>
+
+        {{ $teachers->links() }}
 
         <table>
             <thead>

@@ -16,9 +16,15 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        return view('page.index', [
-            'teachers' => Teacher::latest()->filter(request(['search']))->get() //search will be passed to queryScope in Teacher Model
-        ]);
+        // dd(
+        //      Teacher::latest()->filter(request(['search']))->get(),
+        //      Teacher::paginate(5),
+        //      Teacher::all()
+        // );
+        
+        //'teachers' => Teacher::latest()->filter(request(['search']))->get() //search will be passed to queryScope in Teacher Model
+
+        return view('page.index', ['teachers' => Teacher::latest()->filter(request(['search']))->paginate(20)]);
     }
 
     /**
