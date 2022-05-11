@@ -13,7 +13,7 @@ class Teacher extends Model
 
     //protected $timestamps = false;
 
-    //defines which data entries can be entered by forms
+    //defines which data entries can be entered in the web application
     protected $fillable = [
         'slug',
         'teaFirstName',
