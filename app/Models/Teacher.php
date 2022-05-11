@@ -23,6 +23,18 @@ class Teacher extends Model
         'teaNickName',
         'section_id'
     ];
+    
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        //the method changes the default attribute to retrieve instances of Teacher in TeacherController,
+        //it lets me pass slugs instead of ID and retrieve the associated teacher directly
+        return 'slug';
+    }
 
 
     /**
