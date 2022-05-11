@@ -25,7 +25,7 @@
 
         <div class="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
             @foreach ( $teachers as $teacher )
-                <x-teacher-card name="{{  $teacher->teaFirstName . ' ' . $teacher->teaName }}" 
+                <x-teacher-card name="{{  $teacher->getFullName() }}" 
                                 nickName="{{ $teacher->teaNickName }}" 
                                 slug="{{ $teacher->slug }}"
                                 class="block">

@@ -8,7 +8,7 @@
     <h1>Surnom des enseignants</h1>
     <p>Zone pour le menu</p>
 
-    <h2>Détail : {{ $teacher->teaFirstName . $teacher->teaName }}</h2>
+    <h2>Détail : {{ $teacher->getFullName()}}</h2>
     <p>Surnom : {{ $teacher->teaNickName }}</p>
     <p>Origine : {{ $teacher->teaOrigin }}</p>
 

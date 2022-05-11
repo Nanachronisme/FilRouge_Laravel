@@ -59,6 +59,18 @@ class Teacher extends Model
         return $this->belongsTo(Section::class);
     }
 
+    /**
+     * Returns the teacher's full name
+     *
+     * @return string
+     */
+    public function getFullName() : string
+    {
+
+        return $this->teaFirstName . ' ' . $this->teaName;
+        
+    }
+
     public function sluggable() : array
     {
         return [
