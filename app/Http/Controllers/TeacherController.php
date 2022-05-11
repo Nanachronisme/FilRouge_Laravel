@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Teacher;
 use App\Models\Section;
 use App\Http\Requests\CreateTeacherRequest;
+use Hamcrest\Type\IsNumeric;
+use Illuminate\Auth\Events\Failed;
 
 class TeacherController extends Controller
 {
@@ -50,9 +52,10 @@ class TeacherController extends Controller
         $request->validated();
 
         //the create method will automatically save the result
+        //the slug will be automatically generated after creation of the asset
         $teacher = Teacher::create([
             'teaFirstName' => $request->input('firstName'),
-            'teaName' => $request->input('lastName'),
+            'teaName' => $request->input('name'),
             'teaNickName' => $request->input('nickName'),
             'teaGender' => $request->input('gender'),
             'teaOrigin' => $request->input('origin'),
@@ -71,13 +74,14 @@ class TeacherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        $teacher = Teacher::findOrFail($id);
+
+        $teacher = Teacher::where("slug", $slug)->firstOrFail();
 
         //dd($teacher->section->secName);
 
-        return view('page.detailTeacher', [$id])->with('teacher', $teacher);
+        return view('page.detailTeacher', [$slug])->with('teacher', $teacher);
 
     }
 
@@ -87,10 +91,10 @@ class TeacherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
         $data = [
-            'teacher' => Teacher::findOrFail($id),
+            'teacher' => Teacher::where("slug", $slug)->firstOrFail(),
             'sections' => Section::all()
         ];
 
@@ -104,11 +108,11 @@ class TeacherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CreateTeacherRequest $request, $id)
+    public function update(CreateTeacherRequest $request, $slug)
     {
         $request->validated();
 
-        $teacher = Teacher::where('id', $id)->update([
+        $teacher = Teacher::where('slug', $slug)->update([
             'teaFirstName' => $request->input('firstName'),
             'teaName' => $request->input('name'),
             'teaNickName' => $request->input('nickName'),

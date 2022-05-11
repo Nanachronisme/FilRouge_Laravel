@@ -27,7 +27,7 @@
             @foreach ( $teachers as $teacher )
                 <x-teacher-card name="{{  $teacher->teaFirstName . ' ' . $teacher->teaName }}" 
                                 nickName="{{ $teacher->teaNickName }}" 
-                                id="{{ $teacher->id }}"
+                                slug="{{ $teacher->slug }}"
                                 class="block">
                 </x-teacher-card>
             @endforeach
@@ -51,7 +51,7 @@
                         <th>{{ $teacher->teaNickName }}</th>
                         <td>
                             <p>
-                                <a href={{ route('teachers.show', $teacher->id) }}>
+                                <a href={{ route('teachers.show', $teacher->slug) }}>
                                     View
                                 </a>
                             </p>

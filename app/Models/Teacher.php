@@ -5,15 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Section;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Teacher extends Model
 {
-    use HasFactory;
+    use HasFactory, Sluggable;
 
     //protected $timestamps = false;
 
     //defines which data entries can be entered by forms
     protected $fillable = [
+        'slug',
         'teaFirstName',
         'teaName',
         'teaGender',
@@ -55,6 +57,15 @@ class Teacher extends Model
     public function section()
     {
         return $this->belongsTo(Section::class);
+    }
+
+    public function sluggable() : array
+    {
+        return [
+            'slug' => [
+                'source' => ['teaFirstName', 'teaName']
+                ]
+            ];
     }
 
 }

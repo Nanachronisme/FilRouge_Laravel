@@ -32,6 +32,7 @@ class CreateTeacherRequest extends FormRequest
             'nickName' => 'required|string|max:50',
             'origin' => 'nullable',
             'section' => 'required|integer|between:1,3'
+            'slug' => 'alpha_dash', 'unique:teachers'
         ];
     }
 }
