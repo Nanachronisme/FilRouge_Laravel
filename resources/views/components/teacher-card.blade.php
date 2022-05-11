@@ -5,8 +5,9 @@
         <a href="{{ route('teachers.show', $slug) }}" class="hover:bg-gray-200 flex flex-col items-center w-full pt-8 pb-2">
             <img class="mb-3 w-24 h-24 rounded-full shadow-lg" src="https://picsum.photos/200/300"
                 alt="Bonnie image">
-            <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{{ $name }}</h5>
-            <span class="text-sm text-gray-500 dark:text-gray-400">{{ $nickName }}</span>
+            {{-- I don't know why but the component doesnt display special characters, it only works if htmlspecialchars_decode is used --}}
+            <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{{ htmlspecialchars_decode($name) }}</h5>  
+            <span class="text-sm text-gray-500 dark:text-gray-400">{{ htmlspecialchars_decode($nickName) }}</span>
         </a>
         <div class="flex mt-2 space-x-3 lg:mt-4">
             <x-button-link href="{{ route('teachers.edit', $slug) }}">
